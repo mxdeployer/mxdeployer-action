@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "./node_modules/.bin/esbuild index.js --bundle --platform=node --target=node16 --outdir=dist --minify"
+		}
+	]
+}

@@ -1,13 +1,21 @@
 name: 'On-Premises Deploy'
 description: 'Deploy apps to an on-premises virtual machine.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  az-service-bus-connection-string:
+    description: 'Connection string to an Azure service bus namespace for sending notifications'
+    required: false
+  az-storage-connection-string:
+    description: 'Connection string to an Azure storage account for holding build artifacts'
+    required: false
+  dest-host:
+    description: 'A unique identifier for the destination host'
+    required: false
+  dest-host-env:
+    description: 'Semi-colon separated key/value pairs to be injected into the host environment'
+    required: false
+  message:
+    description: 'A message to be logged ... backwards'
+    required: false
 runs:
   using: 'node16'
   main: 'dist/index.js'
