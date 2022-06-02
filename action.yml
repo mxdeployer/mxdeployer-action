@@ -1,6 +1,10 @@
 name: 'On-Premises Deploy'
 description: 'Deploy apps to an on-premises virtual machine.'
 inputs:
+  source-path:
+    description: 'Source path for application'
+    required: true
+    default: '.'
   az-service-bus-connection-string:
     description: 'Connection string to an Azure service bus namespace for sending notifications'
     required: false
@@ -16,6 +20,9 @@ inputs:
   message:
     description: 'A message to be logged ... backwards'
     required: false
+outputs:
+  archive-path: 
+    description: 'The path to the zipped build artifact'
 runs:
   using: 'node16'
   main: 'dist/index.js'
