@@ -3,7 +3,7 @@ export default class DeploymentNotification {
         this.url = url;
         this.host = host;
         this.appName = appName;
-        this.environment = JSON.parse(environment);
-        this.appSecrets = JSON.parse(appSecrets);
+        this.environment = JSON.parse(environment || "{}");
+        this.appSecrets = JSON.parse(appSecrets || "{}");
     }
 }
