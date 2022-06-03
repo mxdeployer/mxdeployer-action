@@ -24,8 +24,11 @@ import ArtifactStore from "./artifact-store.js";
     const store = new ArtifactStore(config.azStorageConnectionString);
     const queue = new NotificationQueue(config.azServiceBusConnectionString);
   
+    console.debug("✅ CHECKPOINT 1");
     const url = await store.upload(config.archivePath);
+    console.debug("✅ CHECKPOINT 2");
     await queue.send(new DeploymentNotification(url, config.host, config.appName, config.environment, config.appSecrets));
+    console.debug("✅ CHECKPOINT 3");
   
     core.setOutput('archive-path', config.archivePath);
   
