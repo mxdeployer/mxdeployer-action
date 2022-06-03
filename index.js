@@ -1,8 +1,8 @@
-import core from '@actions/core';
-import github from '@actions/github';
-import fs from 'fs';
-import archiver from 'archiver';
-import crypto from 'crypto';
+import * as core from "@actions/core";
+import * as github from '@actions/github';
+import * as fs from 'fs';
+import * as archiver from 'archiver';
+import * as crypto from 'crypto';
 
 try {
 
