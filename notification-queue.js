@@ -14,6 +14,8 @@ export default class NotificationQueue {
         const sender = client.createSender("sbt-mxdeployer");
 
         await sender.sendMessages({ body: JSON.stringify(notification), contentType: "application/json" });
+        await sender.close();
+        await client.close();
 
         console.info("OK.");
     }
