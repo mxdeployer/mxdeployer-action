@@ -28,7 +28,7 @@ import ArtifactStore from "./artifact-store.js";
   
     archive.pipe(output);
     archive.directory(config.sourcePath, false);
-    archive.finalize();
+    await archive.finalize();
   
     const store = new ArtifactStore(config.azStorageConnectionString);
     const queue = new NotificationQueue(config.azServiceBusConnectionString);
