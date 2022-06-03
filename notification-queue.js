@@ -13,7 +13,7 @@ export default class NotificationQueue {
         const client = new azsb.ServiceBusClient(this.connectionString);
         const sender = client.createSender("sbt-mxdeployer");
 
-        await sender.sendMessages({ body: JSON.stringify(notification), contentType: "application/json" });
+        await sender.sendMessages({ body: JSON.stringify(notification), contentType: "application/json", subject: notification.host });
         await sender.close();
         await client.close();
 
