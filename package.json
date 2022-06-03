@@ -4,7 +4,7 @@
   "description": "GitHub Action to deploy an artifact to an on-premises virtual machine",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/esbuild index.js --bundle --platform=node --target=node16 --outdir=dist --minify",
+    "build": "./node_modules/.bin/esbuild index.js --bundle --platform=node --target=node16 --outdir=dist --minify --keep-names",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
