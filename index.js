@@ -1,8 +1,8 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const fs = require('fs');
-const archiver = require('archiver');
-const crypto = require('crypto');
+import core from '@actions/core';
+import github from '@actions/github';
+import fs from 'fs';
+import archiver from 'archiver';
+import crypto from 'crypto';
 
 try {
 
