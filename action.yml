@@ -20,7 +20,7 @@ inputs:
   environment:
     description: 'A JSON object containing key/value pairs for environment variables to update'
     required: false
-  app_secrets: 
+  app-secrets: 
     description: 'A JSON object containing key/value pairs for app secrets to update'
     required: false
 outputs:

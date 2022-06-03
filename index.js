@@ -13,7 +13,7 @@ try {
   const host = core.getInput('host');
   const appName = core.getInput('app-name');
   const environment = core.getInput('environment');
-  const appSecrets = core.getInput('app_secrets');
+  const appSecrets = core.getInput('app-secrets');
 
   console.log(`archive-path: ${archivePath}`);
   console.log(`az-service-bus-connection-string: ${azServiceBusConnectionString}`);
@@ -22,7 +22,7 @@ try {
   console.log(`host: ${host}`);
   console.log(`app-name: ${appName}`);
   console.log(`environment: ${environment}`);
-  console.log(`app_secrets: ${appSecrets}`);
+  console.log(`app-secrets: ${appSecrets}`);
 
 /*  
   const output = fs.createWriteStream(archivePath);
