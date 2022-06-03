@@ -1,9 +1,9 @@
 export default class DeploymentNotification {
 
-    constructor(url, tag, host, appName, environment, appSecrets) {
+    constructor(url, ref, host, appName, environment, appSecrets) {
 
         this.url = url;
-        this.tag = tag;
+        this.ref = ref;
         this.host = host;
         this.appName = appName;
         this.environment = JSON.parse(environment || "{}");

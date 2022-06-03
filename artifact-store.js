@@ -7,10 +7,13 @@ export default class ArtifactStore {
         this.connectionString = connectionString
     }
 
-    async upload(artifactPath) {
+    async upload(appName, ref, artifactPath) {
 
-        const blobName = path.basename(artifactPath);
-        console.info(`Uploading ${artifactPath} ...`);
+        const baseName = path.basename(artifactPath);
+        const refSuffix = ref.replace(/^refs\//, "");
+        const blobName = path.join(appName, refSuffix, baseName);
+
+        console.info(`Uploading ${artifactPath} --> "${blobName}" ...`);
 
         const serviceClient = azs.BlobServiceClient.fromConnectionString(this.connectionString);
         const containerClient = serviceClient.getContainerClient("artifacts");

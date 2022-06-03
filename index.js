@@ -11,14 +11,6 @@ import ArtifactStore from "./artifact-store.js";
 
   try {
     
-    let tag = null;
-    const ref = github.context.ref;
-
-    console.debug(`🔖 ref: ${ref}`);
-
-    if (ref && ref.startsWith("refs/tags/"))
-      tag = ref.replace(/^refs\/tags\//, "");
-
     const output = fs.createWriteStream(config.archivePath);
     const archive = archiver('zip');
   
@@ -33,8 +25,8 @@ import ArtifactStore from "./artifact-store.js";
     const store = new ArtifactStore(config.azStorageConnectionString);
     const queue = new NotificationQueue(config.azServiceBusConnectionString);
   
-    const url = await store.upload(config.archivePath);
-    await queue.send(new DeploymentNotification(url, tag, config.host, config.appName, config.environment, config.appSecrets));
+    const url = await store.upload(config.appName, github.context.ref, config.archivePath);
+    await queue.send(new DeploymentNotification(url, github.context.ref, config.host, config.appName, config.environment, config.appSecrets));
   
     core.setOutput('archive-path', config.archivePath);
   
