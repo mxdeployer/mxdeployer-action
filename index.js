@@ -16,7 +16,7 @@ try {
   });  
 
   archive.pipe(output);
-  archive.directory(sourcePath, false);
+  archive.directory(config.sourcePath, false);
   archive.finalize();
 
   core.setOutput('archive-path', config.archivePath);
