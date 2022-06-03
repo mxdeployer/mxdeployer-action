@@ -1,24 +1,27 @@
 name: 'On-Premises Deploy'
 description: 'Deploy apps to an on-premises virtual machine.'
 inputs:
+  az-service-bus-connection-string:
+    description: 'Connection string to an Azure service bus namespace for sending notifications'
+    required: true
+  az-storage-connection-string:
+    description: 'Connection string to an Azure storage account for holding build artifacts'
+    required: true
   source-path:
     description: 'Source path for application'
     required: true
     default: '.'
-  az-service-bus-connection-string:
-    description: 'Connection string to an Azure service bus namespace for sending notifications'
+  host:
+    description: 'A unique identifier for the host'
+    required: true
+  app-name:
+    description: 'The name of the app to deploy'
+    required: true
+  environment:
+    description: 'A JSON object containing key/value pairs for environment variables to update'
     required: false
-  az-storage-connection-string:
-    description: 'Connection string to an Azure storage account for holding build artifacts'
-    required: false
-  dest-host:
-    description: 'A unique identifier for the destination host'
-    required: false
-  dest-host-env:
-    description: 'Semi-colon separated key/value pairs to be injected into the host environment'
-    required: false
-  message:
-    description: 'A message to be logged ... backwards'
+  app_secrets: 
+    description: 'A JSON object containing key/value pairs for app secrets to update'
     required: false
 outputs:
   archive-path: 
