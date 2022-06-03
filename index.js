@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import * as github from '@actions/github'
 import * as fs from 'fs';
 import archiver from 'archiver';
 import config from './config.js';
@@ -9,6 +10,14 @@ import ArtifactStore from "./artifact-store.js";
 (async () => {
 
   try {
+    
+    let tag = null;
+    const ref = github.context.ref;
+
+    console.debug(`🔖 ref: ${ref}`);
+
+    if (ref && ref.startsWith("refs/tags/"))
+      tag = ref.replace(/^refs\/tags\//, "");
 
     const output = fs.createWriteStream(config.archivePath);
     const archive = archiver('zip');
@@ -24,11 +33,8 @@ import ArtifactStore from "./artifact-store.js";
     const store = new ArtifactStore(config.azStorageConnectionString);
     const queue = new NotificationQueue(config.azServiceBusConnectionString);
   
-    console.debug("✅ CHECKPOINT 1");
     const url = await store.upload(config.archivePath);
-    console.debug("✅ CHECKPOINT 2");
-    await queue.send(new DeploymentNotification(url, config.host, config.appName, config.environment, config.appSecrets));
-    console.debug("✅ CHECKPOINT 3");
+    await queue.send(new DeploymentNotification(url, tag, config.host, config.appName, config.environment, config.appSecrets));
   
     core.setOutput('archive-path', config.archivePath);
   
