@@ -21,11 +21,11 @@ import ArtifactStore from "./artifact-store.js";
     archive.directory(config.sourcePath, false);
     archive.finalize();
   
-    var store = new ArtifactStore(config.azStorageConnectionString);
-    var queue = new NotificationQueue(config.azServiceBusConnectionString);
+    const store = new ArtifactStore(config.azStorageConnectionString);
+    const queue = new NotificationQueue(config.azServiceBusConnectionString);
   
-    await store.upload(config.archivePath);
-    await queue.send(new DeploymentNotification("", config.host, config.appName, config.environment, config.appSecrets));
+    const url = await store.upload(config.archivePath);
+    await queue.send(new DeploymentNotification(url, config.host, config.appName, config.environment, config.appSecrets));
   
     core.setOutput('archive-path', config.archivePath);
   
